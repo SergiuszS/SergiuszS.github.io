@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<title>Memory</title>
+<link rel="stylesheet" href="styleM.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|Oxygen+Mono' rel='stylesheet' type='text/css'>
+
+<body>
+<div id="calosc">
+    <div id="napis"><span style="color: #d5dd18;">My</span><span style="color: #ff0080;">Memory</span></div>
+    <div id="plansza">
+    
+    
+    </div>
+    <div style="margin: auto; clear: both; width: 150px; color: white;">Sergiusz &copy; 2017</div>
+ </div>
+    
+</body>
+<script>
+    window.onload = losuj;
+ var litera = new Array(16);
+    litera[0] = "♛";
+    litera[1] = "♛";
+    litera[2] = "❤";
+    litera[3] = "❤";
+    litera[4] = "☏";
+    litera[5] = "☏";
+    litera[6] = "✈";
+    litera[7] = "✈";
+    litera[8] = "♘";
+    litera[9] = "♘";
+    litera[10] = "☺";
+    litera[11] = "☺";
+    litera[12] = "✐";
+    litera[13] = "✐";
+    litera[14] = "㋡";
+    litera[15] = "㋡";
+
+//system mieszajacy
+ var pomieszane = new Array(16); //tablica zawierajaca pomieszane kafelki
+for(i=0; i<=15; i++) pomieszane[i] = ""; //tymczasowe przypisanie
+function losuj(){
+    var qw; //pomocnicza zmienna
+    var t= false; //sprawdzenie powodzenia przypisania
+    for(i=0; i<=15; i++){ //wykonanie przypisania dla kazdego
+    do{
+        qw = Math.floor(Math.random() * 16); //losowanie liczby z zakresu 0-15
+        if(pomieszane[qw]==""){ //jesli pusta
+            pomieszane[qw] = litera[i]; //przypisz
+            t=true; //przypisanie powiodlo sie
+        }
+    }while(t!=true); //rob, dopoki nie przypisze
+    t=false; //reset zmiennej
+    }
+    wypisz();
+} 
+    //wypisanie wszystkich kafelkow
+    function wypisz(){
+          for(i=0; i<16; i++){
+              document.getElementById("plansza").innerHTML += '<div id="p'+i+'" onclick="klik('+i+')" class="zakryty"></div>'; //wypisanie zakrytych kafelkow
+              if((i+1)%4==0) document.getElementById("plansza").innerHTML += '<div style="clear: both;"> </div>'; // przerwanie linii
+          }
+}
+    var pierwsza, druga; //zmienne przechowujace kolejno odkrywane kafelki
+    var licznik = 0; //licznik do wygranej
+    var odkryte = 0; //obecnie odkrytych (do wykrywania 1. lub 2. ruchu)
+    var juz = false; //pomocnicza zmienna do prawidlowego dzialania (blokada zbyt szybkich ruchow, tj, zanim nastapi zasloniecie wczesniejszej pary)
+    
+var rekord = 0; //ilosc prob wyswietlana na koncu    
+function klik(p){ //funkcja wywolywana po kazdym kliknieciu
+    if(juz==false){
+    if(odkryte == 0){ //jesli pierwsze odkrycie
+        rekord++;
+        pierwsza = p;
+        document.getElementById("p"+p).setAttribute("class", "kwadrat"); //odkrycie kafelka
+        document.getElementById("p"+p).innerHTML = pomieszane[p]; //wyswietlenie litery
+        odkryte++;
+    }
+    else if((odkryte ==1)&&(p!=pierwsza)){ //jesli drugie odkrycie, i nie jest to ten sam kafelek co 1.
+        rekord++;
+        druga = p;
+        document.getElementById("p"+p).setAttribute("class", "kwadrat"); //odkrycie kafelka
+        document.getElementById("p"+p).innerHTML = pomieszane[p]; //wyswietlenie litery
+        odkryte = 0; //reset odkrytych
+        if(pomieszane[pierwsza]==pomieszane[druga]){ //jesli udalo sie odkryc dwa takie same
+          //console.log("dobrze");
+                juz=true;
+             window.setTimeout(stop,500);//lekkie opoznienie zeby uzytkownik zobaczyl obie karty
+            function stop(){
+        //zmiana stylow na odkryte, ukrycie liter, blokada onclicka
+        document.getElementById("p"+pierwsza).setAttribute("style", "background-color: white; cursor: default;");
+        document.getElementById("p"+druga).setAttribute("style", "background-color: white; cursor: default;");
+        document.getElementById("p"+pierwsza).innerHTML = "";
+        document.getElementById("p"+druga).innerHTML = "";
+        document.getElementById("p"+pierwsza).onclick = " ";
+        document.getElementById("p"+druga).onclick = " ";
+        //reset zmiennych
+        pierwsza="";
+        druga="";
+        licznik++; //licznik udanych prob
+        juz = false;
+        if(licznik>=8) document.getElementById("plansza").innerHTML = '<h1 onclick="location.reload();" style="cursor: pointer;">Gratulacje, wygrałeś!</h1><h2>Ilość ruchów: '+(rekord/2)+'</h2>';  //sprawdzenie, czy koniec gry 
+            }
+        }
+        else{ //jesli dwa kafelki nie sa takie same
+            juz= true;
+            window.setTimeout(stop1,500); //lekkie opoznienie zeby uzytkownik zobaczyl obie karty
+            function stop1(){
+            //zmiana stylow na ukryte, ukrycie liter
+            document.getElementById("p"+pierwsza).setAttribute("class", "zakryty");
+            document.getElementById("p"+druga).setAttribute("class", "zakryty");
+            document.getElementById("p"+pierwsza).innerHTML = "";
+            document.getElementById("p"+druga).innerHTML = "";
+            //reset zmiennych
+            pierwsza="";
+            druga="";
+            juz= false;
+            }
+            
+        }
+
+    } 
+    }
+}
+</script>
+
+</html>

@@ -1,14 +1,47 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sergiusz - Strona Główna</title>
+<title>Home - logowanie</title>
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<meta charset="UTF-8">
 </head>
 <body>
-    <h1>Sergiusz - test</h1>
-    qwerty
-</form>
+<div id="top">
+<div id="box">
+        <span>Sergiusz</span>
+        <nav id="menu">
+        <a href="#">Tutaj</a>
+        <a href="#">Zupełnie</a>
+        <a href="#">Nic</a>
+        <a href="#">Nie ma</a>
+        </nav>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+<div id="boxes">
+    <div id="box-right">
+        <h4>Logowanie</h4>
+        <form action="login.php" method="POST">
+            Nazwa użytkownika:
+            <input type="text" name="login">
+            Hasło:
+            <input type="password" name="password"><br><br>
+            <input type="submit" value="Zaloguj się">
+        </form>
+        <span style="color: green">
+        </span><br>
+        Nie masz jeszcze konta?<br>
+        <a href="#">Zarejestruj się</a>
+    </div>
+    <div id="box-left">
+        <h1>Witamy!</h1>
+        <p><a href="memory.html">Memory</a></p>
+    </div>
+</div>
+<div id="bottom">
+    Sergiusz 2017 &copy;
+</div>
 </body>
 </html>
