@@ -21,22 +21,22 @@
 <script>
     window.onload = losuj;
  var litera = new Array(16);
-    litera[0] = "♛";
-    litera[1] = "♛";
-    litera[2] = "❤";
-    litera[3] = "❤";
-    litera[4] = "☏";
-    litera[5] = "☏";
-    litera[6] = "✈";
-    litera[7] = "✈";
-    litera[8] = "♘";
-    litera[9] = "♘";
-    litera[10] = "☺";
-    litera[11] = "☺";
-    litera[12] = "✐";
-    litera[13] = "✐";
-    litera[14] = "㋡";
-    litera[15] = "㋡";
+    litera[0] = "🐻";
+    litera[1] = "🐻";
+    litera[2] = "🍓";
+    litera[3] = "🍓";
+    litera[4] = "🐶";
+    litera[5] = "🐶";
+    litera[6] = "🐧";
+    litera[7] = "🐧";
+    litera[8] = "⚽";
+    litera[9] = "⚽";
+    litera[10] = "🎨";
+    litera[11] = "🎨";
+    litera[12] = "📷";
+    litera[13] = "📷";
+    litera[14] = "🐢";
+    litera[15] = "🐢";
 
 //system mieszajacy
  var pomieszane = new Array(16); //tablica zawierajaca pomieszane kafelki
@@ -101,7 +101,7 @@ function klik(p){ //funkcja wywolywana po kazdym kliknieciu
         druga="";
         licznik++; //licznik udanych prob
         juz = false;
-        if(licznik>=8) document.getElementById("plansza").innerHTML = '<h1 onclick="location.reload();" style="cursor: pointer;">Gratulacje, wygrałeś!</h1><h2>Ilość ruchów: '+(rekord/2)+'</h2>';  //sprawdzenie, czy koniec gry 
+        if(licznik>=8) document.getElementById("plansza").innerHTML = '<h1 onclick="location.reload();" style="cursor: pointer;">Gratulacje, wygrałeś! Kliknij, by odświeżyć</h1><h2>Ilość ruchów: '+(rekord/2)+'</h2>';  //sprawdzenie, czy koniec gry 
             }
         }
         else{ //jesli dwa kafelki nie sa takie same
