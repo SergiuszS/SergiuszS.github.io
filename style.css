@@ -78,6 +78,11 @@ body {
     text-justify: inter-word;
 }
 
+.title{
+    float: left;
+    font-size: 200%;
+}
+
 #bottom{
     width: 100%;
     min-height: 55px;
@@ -156,23 +161,27 @@ input[type=text]:focus, input[type=password]:focus {
     #box, #boxes{
         width: 98%;
     }
-
+.title{
+    width: 100%;
+    text-align: center;
+}
 
 #top{
     height: 280px;
     line-height: 55px;
 }
+#menu{
+    margin-left: 0;
+}
 #top a{
     font-size: 110%;
-    padding-left: 7px;
-    padding-right: 7px;
+    padding-left: 0px;
+    padding-right: 0px;
     clear: both;
+    width: 100%;
+    text-align: center;
     
-}
-#top span{
-    font-size: 200%;
-    clear: both;
-    margin: auto;
+    
 }
 
 #box-left, #box-right{
@@ -180,11 +189,16 @@ input[type=text]:focus, input[type=password]:focus {
     width: 100%;
     margin-bottom: 10px;
 }
-#box-left{
+#box-left, #box-full, #box-plain{
     width: 100% !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
 
+}
+@media screen and (max-width: 400px){
+input{
+    height: 30px;
+}
 }
 
